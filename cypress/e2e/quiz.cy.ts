@@ -1,17 +1,17 @@
 describe('Tech Quiz E2E Flow', () => {
-    it('starts quiz and finishes all 10 questions', () => {
+    it('starts quiz and completes all questions', () => {
       cy.visit('/');
-      cy.contains('Start Quiz').click();
+      cy.get('[data-cy=start-quiz]').click();
   
       for (let i = 0; i < 10; i++) {
         cy.get('[data-cy=question]').should('exist');
         cy.get('[data-cy=option]').first().click();
         if (i < 9) {
-          cy.contains('Next').click();
+          cy.contains('Next').click(); // if applicable
         }
       }
   
-      cy.contains('Your Score').should('exist');
+      cy.get('[data-cy=score]').should('exist');
     });
   });
   
